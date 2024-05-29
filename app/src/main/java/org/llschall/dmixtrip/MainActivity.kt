@@ -20,9 +20,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             DmixTripTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                            name = "Android",
-                            modifier = Modifier.padding(innerPadding)
+                    HomePage(
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
@@ -31,10 +30,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun HomePage(modifier: Modifier = Modifier) {
     Text(
-            text = "Hello $name!",
-            modifier = modifier
+        text = "Welcome to DmixTrip !",
+        modifier = modifier
     )
 }
 
@@ -42,6 +41,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     DmixTripTheme {
-        Greeting("Android")
+        HomePage()
     }
 }
