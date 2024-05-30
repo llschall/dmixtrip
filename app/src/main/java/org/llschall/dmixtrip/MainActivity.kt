@@ -47,10 +47,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HomePage(modifier: Modifier = Modifier) {
 
-    var count by remember {
-        mutableIntStateOf(10)
-    }
-
     Column {
         Row {
             Icon(
@@ -69,24 +65,9 @@ fun HomePage(modifier: Modifier = Modifier) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "channel 1")
-            Row {
-                Surface(onClick = { count-- }) {
-                    Text(
-                        text = " - ",
-                        fontSize = 30.sp,
-                        modifier = Modifier.background(Color.Gray)
-                    )
-                }
-                Text(text = "$count", fontSize = 30.sp)
-                Surface(onClick = { count++ }) {
-                    Text(
-                        text = " + ",
-                        fontSize = 30.sp,
-                        modifier = Modifier.background(Color.Gray)
-                    )
-                }
-            }
+            Channel(1)
+            Channel(2)
+            Channel(3)
         }
     }
 }
