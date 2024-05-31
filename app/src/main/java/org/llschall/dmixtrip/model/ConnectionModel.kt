@@ -2,6 +2,7 @@ package org.llschall.dmixtrip.model
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
+import org.llschall.dmixtrip.model.ConnectionHandler.Companion.handler
 import java.util.Date
 
 class ConnectionModel : ViewModel() {
@@ -14,7 +15,7 @@ class ConnectionModel : ViewModel() {
 
     fun onConnect() {
         log("connect")
-        
+        log(handler.setup())
     }
 
 

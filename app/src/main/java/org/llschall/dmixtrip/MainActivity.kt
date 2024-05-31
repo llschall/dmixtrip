@@ -1,6 +1,5 @@
 package org.llschall.dmixtrip
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,11 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
+import org.llschall.dmixtrip.model.ConnectionHandler
 import org.llschall.dmixtrip.model.ConnectionModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ConnectionHandler.handler.context = applicationContext
+
         setContent {
             Scaffold(
                 modifier = Modifier.fillMaxSize()
