@@ -36,7 +36,23 @@ fun ConnectionView() {
                 model.onStatus()
             }) {
                 Text(
-                    text = "Status",
+                    text = "Scan",
+                    fontSize = 28.sp
+                )
+            }
+            Button(onClick = {
+                model.onConnect()
+            }) {
+                Text(
+                    text = "Connect",
+                    fontSize = 28.sp
+                )
+            }
+            Button(onClick = {
+                model.onListen()
+            }) {
+                Text(
+                    text = "Listen",
                     fontSize = 28.sp
                 )
             }

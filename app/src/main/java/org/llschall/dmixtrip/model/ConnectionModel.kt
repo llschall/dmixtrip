@@ -20,6 +20,20 @@ class ConnectionModel : ViewModel() {
         status[0] = handler.status()
     }
 
+    fun onConnect() {
+        val connected = handler.connect()
+        if (connected) {
+            status[0] = "connected !"
+        } else {
+            status[0] = "not connected"
+        }
+
+    }
+
+    fun onListen() {
+        handler.listen()
+    }
+
     fun log(msg: String) {
         val now = Date().time
         logs.add("$now >  $msg")
