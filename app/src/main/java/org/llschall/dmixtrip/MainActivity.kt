@@ -22,7 +22,7 @@ import org.llschall.dmixtrip.model.ConnectionModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        
         ConnectionHandler.handler.context = applicationContext
 
         setContent {
@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 @Composable
 fun HomePage(modifier: Modifier = Modifier) {

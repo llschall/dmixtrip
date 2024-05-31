@@ -21,10 +21,10 @@ class ConnectionHandler {
         if (context == null) return "context not found"
         if (ActivityCompat.checkSelfPermission(
                 context!!,
-                Manifest.permission.BLUETOOTH_CONNECT
+                Manifest.permission.BLUETOOTH
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            return "Permission not granted"
+            return "permission not granted"
         }
 
         try {
