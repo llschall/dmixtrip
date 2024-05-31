@@ -20,7 +20,7 @@ fun ConnectionView() {
         for (i in 0..<model.logs.size) {
             Text(
                 text = model.logs[i],
-                fontSize = 24.sp
+                fontSize = 18.sp
             )
         }
         Row {
@@ -33,13 +33,14 @@ fun ConnectionView() {
                 )
             }
             Button(onClick = {
-                model.onConnect()
+                model.onStatus()
             }) {
                 Text(
-                    text = "Connect",
+                    text = "Status",
                     fontSize = 28.sp
                 )
             }
         }
+        Text(text = model.status[0])
     }
 }

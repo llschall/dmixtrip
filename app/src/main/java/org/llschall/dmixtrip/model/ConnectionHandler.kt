@@ -14,8 +14,15 @@ class ConnectionHandler {
     }
 
     var context: Context? = null
-    var service: BluetoothManager? = null
-    var adapter: BluetoothAdapter? = null
+
+    private var wrapper: Adapter? = null
+
+    fun status(): String {
+        if (wrapper == null) {
+            return "no started"
+        }
+        return wrapper!!.status()
+    }
 
     fun setup(): String {
         if (context == null) return "context not found"
@@ -28,16 +35,26 @@ class ConnectionHandler {
         }
 
         try {
-            service = ContextCompat.getSystemService(context!!, BluetoothManager::class.java)
-            if (service == null) return "service not found"
-            adapter = service!!.adapter
+            val service = ContextCompat.getSystemService(context!!, BluetoothManager::class.java)
+                ?: return "service not found"
+            val adapter = service.adapter ?: return "adapter not found"
 
-            if (adapter == null) return "adapter not found"
-            return "found adapter ${adapter!!.name}"
+            wrapper = Adapter(service, adapter)
+            return "found adapter ${adapter.name} ${adapter.isEnabled}"
         } catch (e: Exception) {
             if (e.message == null) return "unknown error"
             return e.message!!
         }
     }
+}
 
+private class Adapter(val manager: BluetoothManager, val adapter: BluetoothAdapter) {
+
+    fun status(): String {
+        return """
+            adapter.state ${adapter.state}
+            adapter.isEnabled ${adapter.isEnabled}
+            """
+    }
+    
 }

@@ -9,15 +9,16 @@ class ConnectionModel : ViewModel() {
 
     val logs = createLogs().toMutableStateList()
 
+    var status = createStatus().toMutableStateList()
+
     fun onStart() {
         log("started")
-    }
-
-    fun onConnect() {
-        log("connect")
         log(handler.setup())
     }
 
+    fun onStatus() {
+        status[0] = handler.status()
+    }
 
     fun log(msg: String) {
         val now = Date().time
@@ -26,5 +27,6 @@ class ConnectionModel : ViewModel() {
     }
 
     private fun createLogs() = List(12) { "*" }
+    private fun createStatus() = List(1) { "*" }
 
 }
