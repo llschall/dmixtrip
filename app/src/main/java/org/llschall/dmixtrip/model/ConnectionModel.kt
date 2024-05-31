@@ -2,8 +2,7 @@ package org.llschall.dmixtrip.model
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.util.Date
 
 class ConnectionModel : ViewModel() {
 
@@ -14,11 +13,8 @@ class ConnectionModel : ViewModel() {
     }
 
     fun log(msg: String) {
-        val now = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS")
-        val date = now.format(formatter)
-
-        logs.add("$date >  $msg")
+        val now = Date().time
+        logs.add("$now >  $msg")
         logs.removeFirst()
     }
 
