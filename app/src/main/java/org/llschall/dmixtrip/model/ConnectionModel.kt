@@ -25,6 +25,6 @@ class ConnectionModel : ViewModel() {
         logs.removeFirst()
     }
 
-    private fun createLogs() = List(7) { "*" }
+    private fun createLogs() = List(12) { "*" }
 
 }
