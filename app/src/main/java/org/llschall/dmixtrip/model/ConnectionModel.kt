@@ -12,6 +12,12 @@ class ConnectionModel : ViewModel() {
         log("started")
     }
 
+    fun onConnect() {
+        log("connect")
+        
+    }
+
+
     fun log(msg: String) {
         val now = Date().time
         logs.add("$now >  $msg")

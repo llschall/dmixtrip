@@ -1,6 +1,7 @@
 package org.llschall.dmixtrip
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,16 +20,26 @@ fun ConnectionView() {
         for (i in 0..<model.logs.size) {
             Text(
                 text = model.logs[i],
-                fontSize = 18.sp
+                fontSize = 24.sp
             )
         }
-        Button(onClick = {
-            model.onStart()
-        }) {
-            Text(
-                text = "Start",
-                fontSize = 28.sp
-            )
+        Row {
+            Button(onClick = {
+                model.onStart()
+            }) {
+                Text(
+                    text = "Start",
+                    fontSize = 28.sp
+                )
+            }
+            Button(onClick = {
+                model.onConnect()
+            }) {
+                Text(
+                    text = "Connect",
+                    fontSize = 28.sp
+                )
+            }
         }
     }
 }
