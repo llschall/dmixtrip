@@ -1,5 +1,6 @@
 package org.llschall.dmixtrip
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,16 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import org.llschall.dmixtrip.model.ConnectionModel
-import org.llschall.dmixtrip.ui.theme.DmixTripTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("=== Application started ===")
         setContent {
             Scaffold(
                 modifier = Modifier.fillMaxSize()
@@ -62,13 +59,5 @@ fun HomePage(modifier: Modifier = Modifier) {
             }
             ConnectionView()
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DmixTripTheme {
-        HomePage()
     }
 }
