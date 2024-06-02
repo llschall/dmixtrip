@@ -49,10 +49,10 @@ fun ConnectionView() {
                 )
             }
             Button(onClick = {
-                model.onListen()
+                model.onSend()
             }) {
                 Text(
-                    text = "Listen",
+                    text = "Send",
                     fontSize = 28.sp
                 )
             }

@@ -10,6 +10,9 @@ import androidx.core.app.ActivityCompat
 import java.io.IOException
 import java.util.UUID
 
+//See https://developer.android.com/reference/android/bluetooth/BluetoothDevice
+const val SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB"
+
 class ConnectionHandler {
     companion object {
         val handler: ConnectionHandler = ConnectionHandler()
@@ -52,8 +55,8 @@ class ConnectionHandler {
         return wrapper!!.connect()
     }
 
-    fun listen() {
-        return wrapper!!.listen()
+    fun send() {
+        return wrapper!!.send()
     }
 
 }
@@ -63,8 +66,7 @@ private class Adapter(
     val adapter: BluetoothAdapter
 ) {
 
-    val uuid = UUID.randomUUID()
-
+    val uuid = UUID.fromString(SPP_UUID)
     var socket: BluetoothSocket? = null
 
     fun status(): String {
@@ -141,7 +143,7 @@ private class Adapter(
 
     }
 
-    fun listen() {
+    fun send() {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.BLUETOOTH
@@ -158,9 +160,9 @@ private class Adapter(
             println("permission not granted")
             return
         }
-        println("listening...")
-        adapter.listenUsingRfcommWithServiceRecord("Galaxy", uuid)
-        println("listening is over")
+
+        socket!!.outputStream.write(100)
+        socket!!.outputStream.flush()
     }
 
 }

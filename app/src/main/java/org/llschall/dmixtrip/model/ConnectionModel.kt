@@ -24,8 +24,8 @@ class ConnectionModel : ViewModel() {
         status[0] = handler.connect()
     }
 
-    fun onListen() {
-        handler.listen()
+    fun onSend() {
+        handler.send()
     }
 
     fun log(msg: String) {
