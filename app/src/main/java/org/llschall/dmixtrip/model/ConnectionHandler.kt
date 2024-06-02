@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import java.io.IOException
 import java.util.UUID
 
 class ConnectionHandler {
@@ -47,7 +48,7 @@ class ConnectionHandler {
         }
     }
 
-    fun connect(): Boolean {
+    fun connect(): String {
         return wrapper!!.connect()
     }
 
@@ -61,6 +62,8 @@ private class Adapter(
     val context: Context,
     val adapter: BluetoothAdapter
 ) {
+
+    val uuid = UUID.randomUUID()
 
     var socket: BluetoothSocket? = null
 
@@ -83,20 +86,21 @@ private class Adapter(
         val devices = adapter.bondedDevices
 
         val writer = StringBuilder()
-        writer.append("---\n")
 
         for (device in devices) {
-            writer.append(device.name + "\n")
+            writer.append("# ")
+            writer.append(device.name + " ")
             writer.append(device.address + "\n")
-
-            socket =
-                device.createInsecureRfcommSocketToServiceRecord(UUID.randomUUID())
-
-            writer.append("remote ${socket!!.remoteDevice.name}\n")
-            writer.append("connected ${socket!!.isConnected}\n")
-
-            writer.append("---\n")
         }
+        writer.append("---\n")
+
+        socket =
+            devices.first().createRfcommSocketToServiceRecord(uuid)
+
+        adapter.cancelDiscovery()
+
+        writer.append("Remote ${socket!!.remoteDevice.name}\n")
+        writer.append("Connected ${socket!!.isConnected}\n")
 
         writer.append(
             """
@@ -110,7 +114,7 @@ private class Adapter(
         return writer.toString()
     }
 
-    fun connect(): Boolean {
+    fun connect(): String {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.BLUETOOTH
@@ -123,10 +127,18 @@ private class Adapter(
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return false
+            return "permission not granted"
         }
-        socket!!.connect()
-        return socket!!.isConnected
+
+        val name = socket!!.remoteDevice.name
+
+        try {
+            socket!!.connect()
+        } catch (e: IOException) {
+            return "### Connection failed on $name: " + e.message
+        }
+        return "Connected to $name"
+
     }
 
     fun listen() {
@@ -147,7 +159,7 @@ private class Adapter(
             return
         }
         println("listening...")
-        adapter.listenUsingRfcommWithServiceRecord("Galaxy", UUID.randomUUID())
+        adapter.listenUsingRfcommWithServiceRecord("Galaxy", uuid)
         println("listening is over")
     }
 

@@ -21,13 +21,7 @@ class ConnectionModel : ViewModel() {
     }
 
     fun onConnect() {
-        val connected = handler.connect()
-        if (connected) {
-            status[0] = "connected !"
-        } else {
-            status[0] = "not connected"
-        }
-
+        status[0] = handler.connect()
     }
 
     fun onListen() {
