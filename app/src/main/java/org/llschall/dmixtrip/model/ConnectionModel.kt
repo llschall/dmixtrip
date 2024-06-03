@@ -1,19 +1,20 @@
 package org.llschall.dmixtrip.model
 
+import android.content.Context
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import org.llschall.dmixtrip.model.ConnectionHandler.Companion.handler
 import java.util.Date
 
-class ConnectionModel : ViewModel() {
+class ConnectionModel() : ViewModel() {
 
     val logs = createLogs().toMutableStateList()
 
     var status = createStatus().toMutableStateList()
 
-    fun onStart() {
+    fun onStart(context: Context) {
         log("started")
-        log(handler.setup())
+        log(handler.setup(context))
     }
 
     fun onStatus() {

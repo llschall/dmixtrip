@@ -1,5 +1,6 @@
 package org.llschall.dmixtrip
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
@@ -10,9 +11,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.llschall.dmixtrip.model.ConnectionModel
 
-@Preview
 @Composable
-fun ConnectionView() {
+fun ConnectionView(context: Context) {
 
     val model: ConnectionModel = viewModel()
 
@@ -25,7 +25,7 @@ fun ConnectionView() {
         }
         Row {
             Button(onClick = {
-                model.onStart()
+                model.onStart(context)
             }) {
                 Text(
                     text = "Start",

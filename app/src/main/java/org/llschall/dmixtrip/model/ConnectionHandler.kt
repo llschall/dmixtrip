@@ -18,8 +18,6 @@ class ConnectionHandler {
         val handler: ConnectionHandler = ConnectionHandler()
     }
 
-    var context: Context? = null
-
     private var wrapper: Adapter? = null
 
     fun status(): String {
@@ -29,8 +27,7 @@ class ConnectionHandler {
         return wrapper!!.status()
     }
 
-    fun setup(): String {
-        if (context == null) return "context not found"
+    fun setup(context: Context): String {
         if (ActivityCompat.checkSelfPermission(
                 context!!,
                 Manifest.permission.BLUETOOTH
