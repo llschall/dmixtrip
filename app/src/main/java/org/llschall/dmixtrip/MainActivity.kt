@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
+import org.llschall.ardwloop.ArdwloopStarter
 import org.llschall.dmixtrip.model.ConnectionHandler
 import org.llschall.dmixtrip.model.ConnectionModel
 
@@ -50,6 +51,12 @@ fun HomePage(context: Context, modifier: Modifier = Modifier) {
             color = Color.Blue,
             fontSize = 50.sp,
             FontStyle.Italic,
+        )
+        Text(
+            text = "Ardwloop " + ArdwloopStarter.VERSION,
+            modifier = modifier,
+            color = Color.Blue,
+            fontSize = 20.sp,
         )
         Row {
             Column(

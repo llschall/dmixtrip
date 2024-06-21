@@ -51,6 +51,8 @@ android {
 
 dependencies {
 
+    implementation(libs.ardwloop)
+
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.bluetooth)
 
