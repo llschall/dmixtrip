@@ -45,6 +45,7 @@ fun HomePage(context: Context, modifier: Modifier = Modifier) {
     }
 
     Column {
+        Text(text =  "Hello Again")
         Text(
             text = "DmixTrip",
             modifier = modifier,
